@@ -1,5 +1,5 @@
 provider "google" {
-  project = "iti-gcp-hossam"
+  project = var.project
   region  = var.region
 }
 

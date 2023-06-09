@@ -7,7 +7,7 @@ resource "google_compute_firewall" "ssh-rule" {
     ports    = ["22"]
   }
   direction     = "INGRESS"
-  source_ranges = ["0.0.0.0/0"] 
+  source_ranges = ["0.0.0.0/0"]
 }
 
 resource "google_compute_firewall" "http-rule" {
@@ -18,5 +18,5 @@ resource "google_compute_firewall" "http-rule" {
     ports    = ["80"]
   }
   direction     = "INGRESS"
-  source_ranges = ["0.0.0.0/0"] 
+  source_ranges = ["0.0.0.0/0"]
 }

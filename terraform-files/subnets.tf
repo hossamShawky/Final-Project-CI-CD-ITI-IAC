@@ -13,7 +13,7 @@ resource "google_compute_subnetwork" "gke-subnet" {
     range_name    = "services"
     ip_cidr_range = "10.52.0.0/20"
   }
-   depends_on = [
+  depends_on = [
     google_compute_network.iti-vpc
   ]
 

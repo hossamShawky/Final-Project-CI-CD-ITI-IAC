@@ -11,3 +11,6 @@ variable "machine_type" {
   type    = string
   default = "e2-small"
 }
+variable "project" {
+  type = string
+}
