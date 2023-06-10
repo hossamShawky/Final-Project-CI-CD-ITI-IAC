@@ -17,17 +17,13 @@ resource "google_compute_instance" "private-vm" {
       }
     }
   }
-  metadata = {
-    "user-data" = <<-EOF
-      #!/bin/bash
-      sudo apt update -y
-      sudo apt-get install kubectl -y
-      EOF
-  }
 
   network_interface {
     network    = google_compute_network.iti-vpc.name
     subnetwork = google_compute_subnetwork.iti-subnet.name
   }
 
+metadata = {
+  "startup-script" = file("./startup.sh")
+}
 }
