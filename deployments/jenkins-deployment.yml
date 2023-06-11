@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jenkins-deployment
+  name: jenkins-server
   namespace: jenkins
 spec:
   replicas: 1
@@ -11,7 +11,7 @@ spec:
   template:
     metadata:
       labels:
-        app: jenkins
+        app: jenkins-server
     spec:
       serviceAccountName: jenkins-admin
       initContainers:
@@ -39,7 +39,7 @@ spec:
       volumes:
         - name: jenkins-home
           persistentVolumeClaim:
-            claimName: jenkins-pv-claim
+            claimName: jenkins-pvc
         - name: docker-socket
           hostPath:
             path: /var/run/

@@ -23,7 +23,7 @@ resource "google_compute_instance" "private-vm" {
     subnetwork = google_compute_subnetwork.iti-subnet.name
   }
 
-metadata = {
-  "startup-script" = file("./startup.sh")
-}
+  metadata = {
+    "startup-script" = file("./startup.sh")
+  }
 }

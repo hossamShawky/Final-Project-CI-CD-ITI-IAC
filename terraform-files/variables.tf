@@ -14,3 +14,7 @@ variable "machine_type" {
 variable "project" {
   type = string
 }
+
+variable "service_account" {
+  type = string
+}

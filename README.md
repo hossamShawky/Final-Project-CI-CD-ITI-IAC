@@ -69,11 +69,21 @@ This repository contains Terraform configuration for setting up infrastructure o
      sudo apt update -y
   ```
   ```bash
-    sudo apt-get install kubectl
+     sudo apt-get update -y
+     sudo apt-get install apt-transport-https
+     curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+     echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+     sudo apt-get update -y
+     sudo apt-get install kubectl
+     kubectl version --client
   ```
 
 3. Google Auth Login
   ```bash
+     echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list
+    curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+    sudo apt-get update
+    sudo apt-get install google-cloud-sdk 
     gcloud auth login
   ```        
   "Follow Steps To Auth Login"
@@ -82,13 +92,18 @@ This repository contains Terraform configuration for setting up infrastructure o
   ```bash
     sudo apt-get install google-cloud-sdk-gke-gcloud-auth-plugin
   ```
+5.  RUN Command " Download Jenkins-deployment files from gcp bucket"
 
-5. Connect to cluster (Replace Zone and prject with your customization)
+   ```bash
+      sudo gsutil cp gs://ci-cd-bucket/* ./deployments/
+   ```
+   "deployments dir created using meta-data during creatin vm"
+6. Connect to cluster (Replace Zone and prject with your customization)
   ```bash
        gcloud container clusters get-credentials iti-cluster --zone us-east1-b --project  iti-gcp-hossam
   ```
 
-6. Apply deployments files "Cpoyied to private-vm From Local PC in meta-data"
+7. Apply deployments files "Cpoyied to private-vm From Local PC in meta-data"
   ```bash
        kubectl apply -f deployments
   ```

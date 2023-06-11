@@ -1,3 +1,2 @@
 #!/bin/bash
-mkdir ~/deployments
-cp -r ../deployments ~/deployments
+mkdir /home/hossam_mohammed_shawky/deployments
