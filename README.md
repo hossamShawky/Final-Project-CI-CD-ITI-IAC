@@ -23,12 +23,7 @@ This repository contains Terraform configuration for setting up infrastructure o
 
 </br>
 
-
-</br>
-
----
-
-</br>
+ 
 
 ## How To Use
 
@@ -140,7 +135,24 @@ This repository contains Terraform configuration for setting up infrastructure o
 
 <br>
 
-### Steps & Outputs Screenshots
+
+### Outputs Screenshots "Single Pipline"
+ 
+ 
+ 
+ ![alt](./screenshots/buid_stage.png)
+ ![alt](./screenshots/deploy_stage.png)
+ ![alt](./screenshots/pipline_output.png)
+ ![alt](./screenshots/app2.png)
+
+<br>
+
+---
+
+<br>
+
+
+### Outputs Screenshots "MultiBranch Pipline"
  ![alt](./screenshots/branches.png)
  ![alt](./screenshots/main_pipline.png)
  ![alt](./screenshots/app_pipline.png)
@@ -148,3 +160,11 @@ This repository contains Terraform configuration for setting up infrastructure o
  ![alt](./screenshots/cluster_services.png)
  ![alt](./screenshots/cluster_services.png)
  ![alt](./screenshots/app.png)
+
+ <br>
+
+---
+
+<br>
+
+ ![alt](./screenshots/bucket.png)
