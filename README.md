@@ -111,10 +111,12 @@ This repository contains Terraform configuration for setting up infrastructure o
 <br>
 
 ### Jenkins Configrations
-1. open jenkins loadbalancer Endpoint
-   ```bash
-      kubectl get services -n jenkins
+1. open Jenkins & create users and passwords.
+    ```bash
+       kubectl get service -n jenkins | grep jenkins-service
    ```
+   "Copy External-ip with specific port and access it from browser"
+
 
 2. Exec your running container and get first password
     ```bash
@@ -122,26 +124,21 @@ This repository contains Terraform configuration for setting up infrastructure o
        cat /var/jenkins_home/secrets/initialAdminPassword
     ```
 
-3. open Jenkins & create users and passwords.
-    ```bash
-       kubectl get service -n jenkins | grep jenkins-service
-   ```
-   "Copy External-ip with specific port and access it from browser"
 
-4. Configure github,dockerHub,kubeconfig and slave (node: "jenkins,123456") credentials.     
+3. Configure github,dockerHub,kubeconfig and slave (node: "jenkins,123456") credentials.     
 
-5. Create Single/Multibransh Pipline from Git repo: https://github.com/hossamShawky/Final-Project-CI-CD-ITI-Simple-App.git/.
+4. Create Single/Multibransh Pipline from Git repo: https://github.com/hossamShawky/Final-Project-CI-CD-ITI-Simple-App.git/.
 
-6. Create new node with name "iti-node" and credentials usernameandpassword.
+5. Create new node with name "iti-node" and credentials usernameandpassword.
 
-7. Choose a branch and click build now.
+6. Choose a branch and click build now.
 
-8. InCase you run single pipline: after choosing Git credentails type
+7. InCase you run single pipline: after choosing Git credentails type
   - branch: main 
   - JenkinsFile: Jenkinesfile_pipline
   - build: select Build With Parameters
 
-9. To get app url Run:
+8. To get app url Run:
   ```bash
        kubectl get service -n app | grep app-service
    ```
