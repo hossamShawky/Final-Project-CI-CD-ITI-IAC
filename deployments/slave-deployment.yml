@@ -13,6 +13,7 @@ spec:
       labels:
         app: jenkins-agent
     spec:
+      serviceAccountName: jenkins-admin
       containers:
       - name: jenkins-agent
         image: ahmadesmailshata/enhanced-agent

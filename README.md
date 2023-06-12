@@ -1,5 +1,5 @@
-# Final-Task-CI-CD-ITI-IAC
-This repository contains Terraform configuration for setting up infrastructure on Google Cloud Platform (GCP) using Infrastructure as Code (IaC) principles, Installing Jenkins (using Ansible https://github/hossamshawky/) and build pipeline to deploy an application on GKE 
+# Final-Project-CI-CD-ITI-IAC
+This repository contains Terraform configuration for setting up infrastructure on Google Cloud Platform (GCP) using Infrastructure as Code (IaC) principles, Installing Jenkins  and build Multibranch pipeline to build and deploy an application on GKE 
 
 </br>
 
@@ -9,12 +9,13 @@ This repository contains Terraform configuration for setting up infrastructure o
 
 ## Requirements
 
--   git & 
+-   git
 -   Terraform
 -   Docker
 -   Google Cloud SDK
 -   Access to a GCP project with the necessary permissions to create and manage resources.
 -   A bucket for the terraform state.
+-   A bucket for jenkins deployment
 
 </br>
 
@@ -22,8 +23,6 @@ This repository contains Terraform configuration for setting up infrastructure o
 
 </br>
 
-## Diagram
-![alt](./screenshots/)
 
 </br>
 
@@ -35,7 +34,7 @@ This repository contains Terraform configuration for setting up infrastructure o
 
 1. clone this repo :
    ```bash
-    git clone https://github.com/hossamShawky/Final-Task-CI-CD-ITI-IAC/
+    git clone https://github.com/hossamShawky/Final-Project-CI-CD-ITI-IAC/
    ```
 
 2. Change Directory To : terraform-files
@@ -65,12 +64,10 @@ This repository contains Terraform configuration for setting up infrastructure o
 1. SSH From Browser
 
 2. Update Packages & Install Kubectl
-  ```bash
-     sudo apt update -y
-  ```
+
   ```bash
      sudo apt-get update -y
-     sudo apt-get install apt-transport-https
+     sudo apt-get install apt-transport-https -y
      curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
      echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
      sudo apt-get update -y
@@ -82,20 +79,20 @@ This repository contains Terraform configuration for setting up infrastructure o
   ```bash
      echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list
     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
-    sudo apt-get update
-    sudo apt-get install google-cloud-sdk 
+    sudo apt-get update -y
+    sudo apt-get install google-cloud-sdk  -y
     gcloud auth login
   ```        
   "Follow Steps To Auth Login"
 
-4. Install gcloud and 
+4. Install gcloud  
   ```bash
-    sudo apt-get install google-cloud-sdk-gke-gcloud-auth-plugin
+    sudo apt-get install google-cloud-sdk-gke-gcloud-auth-plugin -y
   ```
 5.  RUN Command " Download Jenkins-deployment files from gcp bucket"
 
    ```bash
-      sudo gsutil cp gs://ci-cd-bucket/* ./deployments/
+      sudo gsutil cp gs://cicd-bucket-hossam/* ./deployments/
    ```
    "deployments dir created using meta-data during creatin vm"
 6. Connect to cluster (Replace Zone and prject with your customization)
@@ -124,14 +121,14 @@ This repository contains Terraform configuration for setting up infrastructure o
 2. Exec your running container and get first password
     ```bash
        kubectl exec -it <running-container-name> -n jenkins -- bash
+       cat /var/jenkins_home/secrets/initialAdminPassword
     ```
-    "cat path-appears-when-open-jenkins"
 
 3. open Jenkins & create users and passwords.
 
 4. Configure github,dockerHub,kubeconfig and slave (node: "jenkins,123456") credentials.     
 
-5. Create Multibransh Pipline from Git repo: https://github.com/hossamShawky/Final-Task-CI-CD-ITI-Simple-App/.
+5. Create Multibransh Pipline from Git repo: https://github.com/hossamShawky/Final-Project-CI-CD-ITI-Simple-App.git/.
 
 6. Create new node with name "iti-node" and credentials usernameandpassword.
 
@@ -144,3 +141,10 @@ This repository contains Terraform configuration for setting up infrastructure o
 <br>
 
 ### Steps & Outputs Screenshots
+ ![alt](./screenshots/branches.png)
+ ![alt](./screenshots/main_pipline.png)
+ ![alt](./screenshots/app_pipline.png)
+ ![alt](./screenshots/cluster_workloads.png)
+ ![alt](./screenshots/cluster_services.png)
+ ![alt](./screenshots/cluster_services.png)
+ ![alt](./screenshots/app.png)

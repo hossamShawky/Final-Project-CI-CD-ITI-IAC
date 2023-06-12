@@ -7,7 +7,7 @@ spec:
   selector:
     app: jenkins-agent
   ports:
-   - protocol:
+   - protocol: TCP
      port: 22
      targetPort: 22   
 
