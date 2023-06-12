@@ -1,5 +1,5 @@
 # Final-Project-CI-CD-ITI-IAC
-This repository contains Terraform configuration for setting up infrastructure on Google Cloud Platform (GCP) using Infrastructure as Code (IaC) principles, Installing Jenkins  and build Multibranch pipeline to build and deploy an application on GKE 
+This repository contains Terraform configuration for setting up infrastructure on Google Cloud Platform (GCP) using Infrastructure as Code (IaC) principles, Installing Jenkins  and build Single/Multi-branch pipeline to build and deploy an application on GKE 
 
 </br>
 
@@ -90,16 +90,19 @@ This repository contains Terraform configuration for setting up infrastructure o
       sudo gsutil cp gs://cicd-bucket-hossam/* ./deployments/
    ```
    "deployments dir created using meta-data during creatin vm"
+
 6. Connect to cluster (Replace Zone and prject with your customization)
   ```bash
-       gcloud container clusters get-credentials iti-cluster --zone us-east1-b --project  iti-gcp-hossam
+      gcloud container clusters get-credentials iti-cluster --zone us-east1-b --project  iti-gcp-hossam
   ```
 
 7. Apply deployments files "Cpoyied to private-vm From Local PC in meta-data"
   ```bash
        kubectl apply -f deployments
   ```
-    This command will create jenkins&app namespaces,jenkins-deployment,jenkins-service,jenkins-service-account,jenkins-volume,slave-deployment and slave-service.
+   " This command will create jenkins&app namespaces,jenkins-deployment,jenkins-service,jenkins-service-account,jenkins-volume,slave-deployment and slave-service."
+
+8. Slave Coniguration
 
 <br>
 
@@ -120,14 +123,29 @@ This repository contains Terraform configuration for setting up infrastructure o
     ```
 
 3. open Jenkins & create users and passwords.
+    ```bash
+       kubectl get service -n jenkins | grep jenkins-service
+   ```
+   "Copy External-ip with specific port and access it from browser"
 
 4. Configure github,dockerHub,kubeconfig and slave (node: "jenkins,123456") credentials.     
 
-5. Create Multibransh Pipline from Git repo: https://github.com/hossamShawky/Final-Project-CI-CD-ITI-Simple-App.git/.
+5. Create Single/Multibransh Pipline from Git repo: https://github.com/hossamShawky/Final-Project-CI-CD-ITI-Simple-App.git/.
 
 6. Create new node with name "iti-node" and credentials usernameandpassword.
 
 7. Choose a branch and click build now.
+
+8. InCase you run single pipline: after choosing Git credentails type
+  - branch: main 
+  - JenkinsFile: Jenkinesfile_pipline
+  - build: select Build With Parameters
+
+9. To get app url Run:
+  ```bash
+       kubectl get service -n app | grep app-service
+   ```
+   "Copy External-ip with specific port and access it from browser"
 
 <br>
 
@@ -157,7 +175,6 @@ This repository contains Terraform configuration for setting up infrastructure o
  ![alt](./screenshots/main_pipline.png)
  ![alt](./screenshots/app_pipline.png)
  ![alt](./screenshots/cluster_workloads.png)
- ![alt](./screenshots/cluster_services.png)
  ![alt](./screenshots/cluster_services.png)
  ![alt](./screenshots/app.png)
 
