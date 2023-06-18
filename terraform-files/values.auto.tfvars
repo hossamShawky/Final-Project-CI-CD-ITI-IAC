@@ -1,5 +1,7 @@
 region          = "us-east1"
 zone            = "us-east1-b"
 machine_type    = "e2-small"
-project         = "iti-gcp-hossam"
+project         = "iti-gcp-hossam-2"
 service_account = "terraform@iti-gcp-hossam.iam.gserviceaccount.com"
+bucket_name = "cicd-bucket-hossam"
+vpc_name = "iti-vpc"

@@ -135,11 +135,11 @@ This repository contains Terraform configuration for setting up infrastructure o
 
 3. Configure github,dockerHub,kubeconfig and slave (node: "jenkins,123456") credentials.     
 
-4. Create Single/Multibransh Pipline from Git repo: https://github.com/hossamShawky/Final-Project-CI-CD-ITI-Simple-App.git/.
+4. Create Single/Multibransh Pipline from Git repo: https://github.com/hossamShawky/Final-Project-CI-CD-ITI-Simple-App.git/. OR [your-own-repo]
 
 5. Create new node with name "iti-node" and credentials usernameandpassword.
 
- ⚠️ If node is offline connect slave and Run
+ ⚠️ If node is offline make sure you selected [Non Verifiying Verification Stratgey - Launch agents via SSH ] while creating & connect slave and Run.
   ```bash
   service ssh start
   chmod 777 /var/run/docker.sock

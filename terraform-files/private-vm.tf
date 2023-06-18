@@ -1,5 +1,5 @@
-data "google_compute_image" "ubuntu1804" {
-  family  = "ubuntu-1804-lts"
+data "google_compute_image" "ubuntu" {
+  family = "ubuntu-2004-lts"
   project = "ubuntu-os-cloud"
 }
 
@@ -11,7 +11,7 @@ resource "google_compute_instance" "private-vm" {
 
   boot_disk {
     initialize_params {
-      image = data.google_compute_image.ubuntu1804.self_link
+      image = data.google_compute_image.ubuntu.self_link
       labels = {
         name = "private-vm"
       }

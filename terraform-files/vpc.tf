@@ -8,7 +8,7 @@ resource "google_project_service" "container" {
 }
 
 resource "google_compute_network" "iti-vpc" {
-  name                            = "iti-vpc"
+  name                            = var.vpc_name
   routing_mode                    = "REGIONAL"
   auto_create_subnetworks         = false
   mtu                             = 1460

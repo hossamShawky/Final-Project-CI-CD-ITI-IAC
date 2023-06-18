@@ -1,6 +1,6 @@
 # Create Bucket To Upload deployment files
 resource "google_storage_bucket" "cicd-bucket-hossam" {
-  name          = "cicd-bucket-hossam"
+  name          = var.bucket_name
   location      = var.region
   force_destroy = true
 
